@@ -1,2 +1,3 @@
 python -m venv p2
+source p2/bin/activate
 pip install numpy
