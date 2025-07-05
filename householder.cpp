@@ -67,7 +67,6 @@ void printMatrix(const Matrix& A, const string& nome) {
 }
 
 int main() {
-    // Criação da matriz A
     Matrix A(n, Vector(n));
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < n; ++j)
@@ -85,12 +84,15 @@ int main() {
         double alpha = -copysign(norm(x), x[0]);
         Vector e(n - k, 0.0); e[0] = 1.0;
 
+        // vetor de relexão householder
         Vector v(n - k);
         for (int i = 0; i < n - k; ++i)
             v[i] = x[i] - alpha * e[i];
         double vnorm = norm(v);
         for (double& vi : v) vi /= vnorm;
 
+        
+        // H = I - 2 * (v * v^T)
         Matrix Hk = identidade(n);
         Matrix Hv = outer(v);
         for (int i = 0; i < n - k; ++i)

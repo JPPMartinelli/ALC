@@ -76,6 +76,7 @@ int main() {
             v[j] = A[j][i];  // coluna i de A
 
         for (int j = 0; j < i; ++j) {
+            // proj = v - (dot(v, q)/dot(q, q)) * q ... 
             double proj = dot(v, Q[j]) / dot(Q[j], Q[j]);
             for (int k = 0; k < n; ++k)
                 v[k] -= proj * Q[j][k];
@@ -86,7 +87,6 @@ int main() {
             Q[i][k] = v[k] / norm_v;
     }
 
-    // Transforma Q (linhas) em Q (colunas), para bater com Q do Python
     Matrix Qt(n, vector<double>(n));
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < n; ++j)
